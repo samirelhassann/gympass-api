@@ -15,7 +15,8 @@
     },
     "plugins": [
         "@typescript-eslint",
-        "eslint-plugin-import-helpers"
+        "eslint-plugin-import-helpers",
+        "unused-imports"
     ],
     "rules": {
         "indent": [
@@ -52,6 +53,17 @@
                     "order": "asc",
                     "ignoreCase": true
                 }
+            }
+        ],
+        "no-unused-vars": "off",
+        "unused-imports/no-unused-imports": "error",
+        "unused-imports/no-unused-vars": [
+            "warn",
+            {
+                "vars": "all",
+                "varsIgnorePattern": "^_",
+                "args": "after-used",
+                "argsIgnorePattern": "^_"
             }
         ]
     }
