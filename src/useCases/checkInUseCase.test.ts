@@ -2,9 +2,10 @@ import { expect, it, describe, beforeEach, afterEach, vi } from "vitest";
 
 import { InMemoryCheckInsRepository } from "@/repositories/inMemory/inMemoryCheckInsRepository";
 import { InMemoryGymsRepository } from "@/repositories/inMemory/inMemoryGymsRepository";
-import { Decimal } from "@prisma/client/runtime/library";
 
-import { CheckInUseCase } from "./CheckInUseCase";
+import { CheckInUseCase } from "./checkInUseCase";
+import { MaxCheckInsPerDayExceededError } from "./errors/MaxCheckInsPerDayExceededError";
+import { MaxDistanceExceededError } from "./errors/maxDistanceExceededError";
 
 let checkInRepository: InMemoryCheckInsRepository;
 let gymsRepository: InMemoryGymsRepository;
@@ -21,18 +22,18 @@ describe("Given the CheckIn Use Case", () => {
     userLongitude: longMock,
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInRepository = new InMemoryCheckInsRepository();
     gymsRepository = new InMemoryGymsRepository();
     sut = new CheckInUseCase(checkInRepository, gymsRepository);
 
-    gymsRepository.items.push({
+    await gymsRepository.create({
       id: "gym-1",
       title: "gym-1",
       description: "gym-1",
       phone: "123",
-      latitude: new Decimal(latMock),
-      longitude: new Decimal(longMock),
+      latitude: latMock,
+      longitude: longMock,
     });
 
     vi.useFakeTimers();
@@ -67,7 +68,7 @@ describe("Given the CheckIn Use Case", () => {
       await sut.execute({
         ...checkInUseCasePropsMock,
       });
-    }).rejects.toBeInstanceOf(Error);
+    }).rejects.toBeInstanceOf(MaxCheckInsPerDayExceededError);
   });
 
   it("should be able to given the same user, do 2 check ins on different days", async () => {
@@ -100,6 +101,6 @@ describe("Given the CheckIn Use Case", () => {
         userLatitude: -6.1533104,
         userLongitude: 39.219937,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(MaxDistanceExceededError);
   });
 });
