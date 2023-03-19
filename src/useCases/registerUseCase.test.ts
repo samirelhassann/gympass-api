@@ -55,8 +55,8 @@ describe("Given the registerUseCase", () => {
 
     await sut.execute(userToCreate);
 
-    await expect(() =>
-      sut.execute(userToCreate)
-    ).rejects.toBeInstanceOf(UserAlreadyExistsError);
+    await expect(() => sut.execute(userToCreate)).rejects.toBeInstanceOf(
+      UserAlreadyExistsError
+    );
   });
 });
