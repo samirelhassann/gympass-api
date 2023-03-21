@@ -7,10 +7,10 @@
 - [x] Should be possible to get the logged user profile;
 - [x] Should be possible to do a check-in on a gym;
 - [x] Should be possible to register a gym;
-- [ ] Should be possible to get the check-ins quantity of the logged user;
-- [ ] Should be possible to the user get the check-ins history;
-- [ ] Should be possible to get the near gyms;
-- [ ] Should be possible to search gyms by name;
+- [x] Should be possible to get the check-ins quantity of the logged user;
+- [x] Should be possible to the user get the check-ins history;
+- [x] Should be possible to get the near gyms until 10 km;
+- [x] Should be possible to search gyms by name;
 - [ ] Should be possible to validate the check-in of a user;
 
 ## RNs
