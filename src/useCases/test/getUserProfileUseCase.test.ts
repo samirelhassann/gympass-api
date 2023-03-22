@@ -3,8 +3,8 @@ import { expect, it, describe, beforeEach } from "vitest";
 
 import { InMemoryUserRepository } from "@/repositories/inMemory/inMemoryUsersRepository";
 
-import { ResourceNotFoundError } from "./errors/ResourceNotFoundError";
-import { GetUserProfileUseCase } from "./getUserProfileUseCase";
+import { ResourceNotFoundError } from "../errors/ResourceNotFoundError";
+import { GetUserProfileUseCase } from "../getUserProfileUseCase";
 
 let usersRepository: InMemoryUserRepository;
 let sut: GetUserProfileUseCase;

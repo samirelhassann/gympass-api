@@ -3,8 +3,8 @@ import { expect, it, describe, beforeEach } from "vitest";
 
 import { InMemoryUserRepository } from "@/repositories/inMemory/inMemoryUsersRepository";
 
-import { UserAlreadyExistsError } from "./errors/userAlreadyExistsError";
-import { RegisterUseCase } from "./registerUseCase";
+import { UserAlreadyExistsError } from "../errors/userAlreadyExistsError";
+import { RegisterUseCase } from "../registerUseCase";
 
 let usersRepository: InMemoryUserRepository;
 let sut: RegisterUseCase;

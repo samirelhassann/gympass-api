@@ -3,9 +3,9 @@ import { expect, it, describe, beforeEach, afterEach, vi } from "vitest";
 import { InMemoryCheckInsRepository } from "@/repositories/inMemory/inMemoryCheckInsRepository";
 import { InMemoryGymsRepository } from "@/repositories/inMemory/inMemoryGymsRepository";
 
-import { CheckInUseCase } from "./checkInUseCase";
-import { MaxCheckInsPerDayExceededError } from "./errors/MaxCheckInsPerDayExceededError";
-import { MaxDistanceExceededError } from "./errors/maxDistanceExceededError";
+import { CheckInUseCase } from "../checkInUseCase";
+import { MaxCheckInsPerDayExceededError } from "../errors/MaxCheckInsPerDayExceededError";
+import { MaxDistanceExceededError } from "../errors/maxDistanceExceededError";
 
 let checkInRepository: InMemoryCheckInsRepository;
 let gymsRepository: InMemoryGymsRepository;

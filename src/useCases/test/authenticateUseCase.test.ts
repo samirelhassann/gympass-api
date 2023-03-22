@@ -3,8 +3,8 @@ import { expect, it, describe, beforeEach } from "vitest";
 
 import { InMemoryUserRepository } from "@/repositories/inMemory/inMemoryUsersRepository";
 
-import { AuthenticateUseCase } from "./authenticateUseCase";
-import { InvalidCredentialsError } from "./errors/invalidCredentialsError";
+import { AuthenticateUseCase } from "../authenticateUseCase";
+import { InvalidCredentialsError } from "../errors/invalidCredentialsError";
 
 let usersRepository: InMemoryUserRepository;
 let sut: AuthenticateUseCase;
