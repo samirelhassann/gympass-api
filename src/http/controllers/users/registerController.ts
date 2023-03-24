@@ -4,7 +4,7 @@ import { z } from "zod";
 import { UserAlreadyExistsError } from "@/useCases/errors/userAlreadyExistsError";
 import { makeRegisterUseCase } from "@/useCases/factories/makeRegisterUseCase";
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
+export async function RegisterController(request: FastifyRequest, reply: FastifyReply) {
   const registerBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),

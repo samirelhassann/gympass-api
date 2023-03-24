@@ -4,7 +4,7 @@ import { z } from "zod";
 import { InvalidCredentialsError } from "@/useCases/errors/invalidCredentialsError";
 import { makeAuthenticateUseCase } from "@/useCases/factories/makeAuthenticateUseCase";
 
-export async function authenticate(
+export async function AuthenticateController(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
@@ -21,16 +21,39 @@ export async function authenticate(
     const { user } = await authenticateUseCase.execute({ email, password });
 
     const token = await reply.jwtSign(
-      {},
+      {
+        role: user.role,
+      },
       {
         sign: {
           sub: user.id,
         },
       }
     );
-    return reply.status(200).send({
-      token,
-    });
+
+    const refreshToken = await reply.jwtSign(
+      {
+        role: user.role,
+      },
+      {
+        sign: {
+          sub: user.id,
+          expiresIn: "1d",
+        },
+      }
+    );
+
+    return reply
+      .setCookie("refreshToken", refreshToken, {
+        path: "/",
+        secure: true,
+        sameSite: true,
+        httpOnly: true,
+      })
+      .status(200)
+      .send({
+        token,
+      });
   } catch (err) {
     if (err instanceof InvalidCredentialsError) {
       return reply.status(400).send({ message: err.message });
@@ -38,6 +61,4 @@ export async function authenticate(
 
     throw err;
   }
-
-  return reply.status(200).send();
 }

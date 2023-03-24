@@ -2,10 +2,10 @@ import { expect, it, describe, beforeEach } from "vitest";
 
 import { InMemoryGymsRepository } from "@/repositories/inMemory/inMemoryGymsRepository";
 
-import { FetchNearbyGyms } from "../fetchNearbyGyms";
+import { FetchNearbyGymsUseCase } from "../fetchNearbyGymsUseCase";
 
 let gymsRepository: InMemoryGymsRepository;
-let sut: FetchNearbyGyms;
+let sut: FetchNearbyGymsUseCase;
 
 describe("Given the FetchNearbyGyms", () => {
   const createGymUseCasePropsMock = {
@@ -18,7 +18,7 @@ describe("Given the FetchNearbyGyms", () => {
 
   beforeEach(() => {
     gymsRepository = new InMemoryGymsRepository();
-    sut = new FetchNearbyGyms(gymsRepository);
+    sut = new FetchNearbyGymsUseCase(gymsRepository);
   });
 
   it("should be return gyms at 10 km of distance between the requested location", async () => {

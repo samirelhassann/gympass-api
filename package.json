@@ -9,8 +9,8 @@
     "build": "tsup src --out-dir build",
     "test": "vitest run --dir src/useCases/test",
     "pretest-e2e": "cd ./prisma/vitest-environment-prisma && yarn link && cd .. && cd .. && pwd && yarn link vitest-environment-prisma",
-    "test-e2e": "vitest run --dir src/http/controllers/e2e",
-    "test-e2e-watch": "vitest --dir src/http/controllers/e2e",
+    "test-e2e": "vitest run --dir src/http/controllers",
+    "test-e2e-watch": "vitest --dir src/http/controllers",
     "test-watch": "vitest --dir src/useCases/test",
     "test-coverage": "vitest run --coverage",
     "test-ui": "vitest --ui"
@@ -35,6 +35,7 @@
     "vitest": "0.29.3"
   },
   "dependencies": {
+    "@fastify/cookie": "8.3.0",
     "@fastify/jwt": "6.7.1",
     "@prisma/client": "4.11.0",
     "bcryptjs": "2.4.3",

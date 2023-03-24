@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 
 import { makeGetUserProfileUseCase } from "@/useCases/factories/makeGetUserProfileUseCase";
 
-export async function profile(request: FastifyRequest, reply: FastifyReply) {
+export async function ProfileController(request: FastifyRequest, reply: FastifyReply) {
   const getUserProfile = makeGetUserProfileUseCase();
 
   const { sub: userId } = request.user;
